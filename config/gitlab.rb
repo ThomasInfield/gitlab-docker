@@ -29,11 +29,12 @@ gitlab_rails['gitlab_default_can_create_group'] = true
 
 registry['enable'] = true
 registry['host'] = 'registry.example.com'
-registry['port'] = 5000
+registry['port'] = 5050
+registry['listen_address'] = '0.0.0.0:5050'
 registry['path'] = '/registry'
-registry['api_url'] = 'https://registry.example.com:5000'
+registry['api_url'] = 'https://registry.example.com:5050'
 registry['secret_key'] = 'your_secret_key'
-registry_external_url 'https://registry.example.com:5000'
+registry_external_url 'https://registry.example.com:5050'
 
 gitlab_rails['gitlab_ci_cd'] = true
 gitlab_rails['gitlab_ci_cd_url'] = 'https://gitlab.example.com'

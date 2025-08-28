@@ -41,4 +41,11 @@ echo "Starting GitLab stack..."
 docker compose up -d
 
 echo "GitLab is running at https://$DOMAIN"
+echo "Waiting 30 seconds for GitLab to initialize..."
+sleep 30
+
+# Display initial root password
+echo "Initial root password:"
+docker exec gitlab-docker-gitlab-1 cat /etc/gitlab/initial_root_password
+echo "NOTE: This password will be deleted in 24 hours. Please change it immediately!"
 echo "Use register-runner.sh to register the runner."

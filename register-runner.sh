@@ -1,22 +1,22 @@
 #!/bin/bash
 set -e
 
-
 # Fill in these variables:
 GITLAB_URL="https://gitlab.example.com/"
-REGISTRATION_TOKEN="FILL_IN_YOUR_TOKEN" # Get this from GitLab UI (Admin > Runners)
+REGISTRATION_TOKEN="glrt-GuGZ2ePA9E2TEzSSKUBnoW86MQp0OjEKdToxCw.01.121qv413q" # Get this from GitLab UI (Admin > Runners)
 
+# Use the Docker network for container communication
 docker run --rm -it \
+  --network gitlab-network \
   -v $(pwd)/data/gitlab-runner:/etc/gitlab-runner \
+  -v $(pwd)/ssl:/etc/gitlab/ssl \
   -v /var/run/docker.sock:/var/run/docker.sock \
+  --add-host=gitlab.example.com:$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gitlab-docker-gitlab-1) \
   gitlab/gitlab-runner:latest register \
     --non-interactive \
     --url "$GITLAB_URL" \
-    --registration-token "$REGISTRATION_TOKEN" \
+    --token "$REGISTRATION_TOKEN" \
+    --name "docker-ansible-runner" \
     --executor "docker" \
     --docker-image "quay.io/ansible/ansible-runner:latest" \
-    --description "docker-ansible-runner" \
-    --tag-list "ansible,docker" \
-    --run-untagged="true" \
-    --locked="false" \
-    --access-level="not_protected"
+    --tls-ca-file "/etc/gitlab/ssl/gitlab.example.com.crt"
