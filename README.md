@@ -10,13 +10,22 @@
    chmod +x setup.sh
    ./setup.sh
    ```
-4. Register the runner:
+4. **(Belangrijk)**  
+   Als je de GitLab Container Registry gebruikt, maak dan ook een self-signed SSL-certificaat aan voor je registry-domein (zoals `registry.example.com`):
+   ```sh
+   openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+     -keyout ./ssl/registry.example.com.key \
+     -out ./ssl/registry.example.com.crt \
+     -subj "/CN=registry.example.com"
+   ```
+   Vervang `registry.example.com` door jouw registry-domein als dat anders is.
+5. Register the runner:
    ```bash
    chmod +x register-runner.sh
    ./register-runner.sh
    ```
-5. Add your Ansible code to a GitLab project and include `.gitlab-ci.yml`
-6. Add the following GitLab CI/CD variables:
+6. Add your Ansible code to a GitLab project and include `.gitlab-ci.yml`
+7. Add the following GitLab CI/CD variables:
    - `SSH_PRIVATE_KEY` (your private key)
    - `KNOWN_HOSTS` (optional)
 
@@ -35,5 +44,5 @@ For detailed instructions on configuring CI/CD variables for SSH keys and other 
 
 Start the environment with Docker Compose (example):
 ```sh
-docker compose up -d
+docker compose up
 ```
