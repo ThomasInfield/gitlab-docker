@@ -12,6 +12,8 @@ config/**
 !config/**/.gitkeep
 !config/gitlab.rb
 
+# Ignore environment variable files
+.env
 config.env
 
 # Ignore Docker artifacts

@@ -1,12 +1,8 @@
-version: '3.8'
-
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
     restart: always
     hostname: '${DOMAIN}'
-    env_file:
-      - ./config.env
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://${DOMAIN}'
@@ -43,5 +39,5 @@ services:
 
 networks:
   default:
-    external:
-      name: gitlab-network
+    name: gitlab-network
+    external: true

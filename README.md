@@ -2,9 +2,9 @@
 
 1. Copy the example configuration file:
    ```sh
-   cp config.env.example config.env
+   cp config.env.example .env
    ```
-2. Edit your settings in `config.env`
+2. Edit your settings in `.env`
 3. Start everything with:
    ```bash
    chmod +x setup.sh
@@ -27,6 +27,7 @@ Done! Your GitLab environment is ready to use.
 - The folders `data/`, `logs/`, `ssl/`, and `config/` are used for persistent storage and configuration.
 - Only `.gitkeep` files and explicitly listed files are tracked in version control.
 - See `.gitignore` for details.
+- **Note:** Docker Compose automatically loads variables from a file named `.env` in the project root.
 
 For detailed instructions on configuring CI/CD variables for SSH keys and other necessary settings, refer to the documentation provided in the project.
 

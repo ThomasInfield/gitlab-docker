@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-# Load configuration from config.env
-if [ ! -f ./config.env ]; then
-  echo "config.env not found! Please create it and fill in your settings."
+# Load configuration from .env
+if [ ! -f .env ]; then
+  echo ".env not found! Please create it (e.g. by copying config.env.example) and fill in your settings."
   exit 1
 fi
-source ./config.env
+source .env
 
 SSL_DIR="./ssl"
 DATA_DIR="./data/gitlab"
@@ -38,7 +38,7 @@ if [ ! -f "$CONFIG_DIR/gitlab.rb" ]; then
 fi
 
 echo "Starting GitLab stack..."
-docker-compose up -d
+docker compose up -d
 
 echo "GitLab is running at https://$DOMAIN"
 echo "Use register-runner.sh to register the runner."
