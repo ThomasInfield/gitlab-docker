@@ -3,6 +3,14 @@ services:
     image: gitlab/gitlab-ce:latest
     restart: always
     hostname: '${DOMAIN}'
+    shm_size: '256m'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 6G
+        reservations:
+          memory: 4G
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://${DOMAIN}'
@@ -20,6 +28,10 @@ services:
         gitlab_rails['gitlab_https'] = true
         gitlab_rails['gitlab_ssl_certificate'] = '/etc/gitlab/ssl/${DOMAIN}.crt'
         gitlab_rails['gitlab_ssl_certificate_key'] = '/etc/gitlab/ssl/${DOMAIN}.key'
+        # Basic performance settings
+        puma['worker_processes'] = 2
+        puma['max_threads'] = 4
+        postgresql['shared_buffers'] = '256MB'
     ports:
       - '80:80'
       - '443:443'
@@ -30,6 +42,10 @@ services:
       - ./logs/gitlab:/var/log/gitlab
       - ./config/gitlab.rb:/etc/gitlab/gitlab.rb
       - ./ssl:/etc/gitlab/ssl
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 256m
 
   gitlab-runner:
     image: gitlab/gitlab-runner:latest
@@ -37,6 +53,9 @@ services:
     volumes:
       - ./data/gitlab-runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./ssl:/etc/gitlab/ssl:ro
+    environment:
+      - CI_SERVER_TLS_CA_FILE=/etc/gitlab/ssl/${DOMAIN}.crt
 
 networks:
   default:
