@@ -1,0 +1,14 @@
+stages:
+  - ansible
+
+ansible-playbook:
+  stage: ansible
+  image: quay.io/ansible/ansible-runner:latest
+  script:
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - ansible-playbook -i inventory playbook.yml
+  only:
+    - main

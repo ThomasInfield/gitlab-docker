@@ -1,0 +1,32 @@
+# Ignore all contents of data, logs, ssl, config except .gitkeep files (including subfolders)
+data/**
+!data/**/.gitkeep
+
+logs/**
+!logs/**/.gitkeep
+
+ssl/**
+!ssl/**/.gitkeep
+
+config/**
+!config/**/.gitkeep
+!config/gitlab.rb
+
+config.env
+
+# Ignore Docker artifacts
+*.pid
+*.sock
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore editor/project files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Allow example files
+!config.env.example
