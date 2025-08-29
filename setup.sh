@@ -25,7 +25,7 @@ if [ ! -f "$SSL_DIR/$DOMAIN.crt" ] || [ ! -f "$SSL_DIR/$DOMAIN.key" ]; then
     -keyout "$SSL_DIR/$DOMAIN.key" \
     -out "$SSL_DIR/$DOMAIN.crt" \
     -subj "/C=NL/ST=Noord-Holland/L=Amsterdam/O=MyOrg/CN=$DOMAIN" \
-    -addext "subjectAltName = DNS:$DOMAIN, DNS:registry.$DOMAIN"
+    -addext "subjectAltName = DNS:$DOMAIN, DNS:$REGISTRY"
 fi
 
 # Create network if it does not exist

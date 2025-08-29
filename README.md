@@ -33,7 +33,7 @@ This script will:
    ```
    Make sure to change this password immediately after your first login!
 
-5. Het setup script maakt automatisch een self-signed SSL-certificaat aan voor je GitLab-domein. Dit certificaat wordt gegenereerd met een Subject Alternative Name (SAN) voor zowel je GitLab domein als je Container Registry domein (registry.$DOMAIN).
+5. Het setup script maakt automatisch een self-signed SSL-certificaat aan voor je GitLab-domein. Dit certificaat wordt gegenereerd met een Subject Alternative Name (SAN) voor zowel je GitLab domein als je Container Registry domein ($REGISTRY).
 
 6. Register the runner:
    1. Log in to GitLab as root user
