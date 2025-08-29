@@ -3,6 +3,9 @@ services:
     image: gitlab/gitlab-ce:latest
     restart: always
     hostname: '${DOMAIN}'
+    extra_hosts:
+      - "gitlab.example.com:127.0.0.1"
+      - "registry.example.com:127.0.0.1"
     shm_size: '512m'
     ulimits:
       sigpending: 62793
@@ -85,6 +88,9 @@ services:
   gitlab-runner:
     image: gitlab/gitlab-runner:latest
     restart: always
+    extra_hosts:
+      - "gitlab.example.com:192.168.1.65"
+      - "registry.example.com:192.168.1.65"
     volumes:
       - ./data/gitlab-runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock

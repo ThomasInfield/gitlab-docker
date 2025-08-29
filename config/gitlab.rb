@@ -28,12 +28,12 @@ gitlab_rails['time_zone'] = 'UTC'
 gitlab_rails['gitlab_default_can_create_group'] = true
 
 registry['enable'] = true
-registry['host'] = 'registry.gitlab.example.com'
+registry['host'] = 'registry.example.com'
 registry['port'] = 5050
 registry['listen_address'] = '0.0.0.0:5050'
 registry['path'] = '/registry'
-registry['api_url'] = 'https://registry.gitlab.example.com:5050'
-registry_external_url 'https://registry.gitlab.example.com:5050'
+registry['api_url'] = 'https://registry.example.com:5050'
+registry_external_url 'https://registry.example.com:5050'
 
 # Use the same SSL certificate for both GitLab and Registry
 registry_nginx['ssl_certificate'] = "/etc/gitlab/ssl/gitlab.example.com.crt"
