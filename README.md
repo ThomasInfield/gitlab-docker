@@ -1,5 +1,22 @@
 # GitLab CE Docker Compose - Quickstart
 
+## Cleanup and Reset
+
+If you need to start fresh or reset your GitLab installation:
+
+```bash
+./cleanup.sh
+```
+
+This script will:
+- Stop all GitLab containers
+- Remove all GitLab data
+- Remove all logs
+- Remove SSL certificates
+- Give you a clean slate to start over
+
+## Initial Setup
+
 1. Copy the example configuration file:
    ```sh
    cp config.env.example .env
