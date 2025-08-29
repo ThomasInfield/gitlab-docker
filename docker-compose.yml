@@ -34,6 +34,12 @@ services:
         gitlab_rails['gitlab_https'] = true
         gitlab_rails['gitlab_ssl_certificate'] = '/etc/gitlab/ssl/${DOMAIN}.crt'
         gitlab_rails['gitlab_ssl_certificate_key'] = '/etc/gitlab/ssl/${DOMAIN}.key'
+        
+        # Registry configuration
+        registry_nginx['ssl_certificate'] = '/etc/gitlab/ssl/${DOMAIN}.crt'
+        registry_nginx['ssl_certificate_key'] = '/etc/gitlab/ssl/${DOMAIN}.key'
+        registry['enable'] = true
+        registry_external_url "https://registry.${DOMAIN}:5050"
         # Optimized performance settings
         postgresql['shared_buffers'] = '1GB'
         postgresql['max_worker_processes'] = 8

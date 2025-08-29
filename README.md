@@ -33,19 +33,8 @@ This script will:
    ```
    Make sure to change this password immediately after your first login!
 
-5. **(Belangrijk)**  
-    Maak een self-signed SSL-certificaat aan voor je GitLab-domein. Gebruik voor zowel GitLab als de Container Registry hetzelfde certificaat met een Subject Alternative Name (SAN):
+5. Het setup script maakt automatisch een self-signed SSL-certificaat aan voor je GitLab-domein. Dit certificaat wordt gegenereerd met een Subject Alternative Name (SAN) voor zowel je GitLab domein als je Container Registry domein (registry.$DOMAIN).
 
-    **Voorbeeld: SAN-certificaat genereren voor gitlab.example.com**
-    ```sh
-    openssl req -newkey rsa:2048 -nodes \
-       -keyout ./ssl/gitlab.example.com.key \
-       -x509 -days 365 \
-       -out ./ssl/gitlab.example.com.crt \
-       -subj "/C=NL/ST=Noord-Holland/L=Amsterdam/O=MyOrg/CN=gitlab.example.com" \
-       -addext "subjectAltName = DNS:gitlab.example.com, DNS:registry.example.com"
-    ```
-    Dit certificaat is geldig voor zowel `gitlab.example.com` als `registry.example.com`. Pas de domeinnamen aan als je andere namen gebruikt.
 6. Register the runner:
    1. Log in to GitLab as root user
    2. Go to **Admin Area** > **Overview** > **Runners** (or navigate to `https://gitlab.example.com/admin/runners`)

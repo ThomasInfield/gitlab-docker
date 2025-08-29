@@ -3,7 +3,7 @@ set -e
 
 # Fill in these variables:
 GITLAB_URL="https://gitlab.example.com/"
-REGISTRATION_TOKEN="glrt-ynF3FCBHoPQG1xyz3o-F0W86MQp0OjEKdToxCw.01.121ycc0rz" # Get this from GitLab UI (Admin > Runners)
+REGISTRATION_TOKEN="glrt-bDfpR2B0mK9rSi4k1Q-nPG86MQp0OjEKdToxCw.01.121xmuab2" # Get this from GitLab UI (Admin > Runners)
 
 # Use the Docker network for container communication
 docker run --rm -it \
